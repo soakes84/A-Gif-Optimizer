@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
@@ -30,6 +31,8 @@ namespace GifOpto
 
             if (openFileDialog1.ShowDialog() == DialogResult.OK)
             {
+                textBoxPath.Text = openFileDialog1.FileName;
+
                 using (var fs = new System.IO.FileStream(openFileDialog1.FileName, System.IO.FileMode.Open, System.IO.FileAccess.Read))
                 {
                     var ms = new System.IO.MemoryStream();
@@ -69,5 +72,71 @@ namespace GifOpto
 
         }
 
+        private void Optimize()
+        {
+            string ExeToUse = string.Empty;
+
+            if (Environment.Is64BitOperatingSystem == true)
+            {
+                ExeToUse = "gifopt64.exe";
+            }
+            else
+            {
+                ExeToUse = "gifopt32.exe";
+            }
+
+            ProcessStartInfo psi = new ProcessStartInfo();
+            psi.CreateNoWindow = true;
+            psi.UseShellExecute = false;
+            psi.WindowStyle = ProcessWindowStyle.Hidden;
+            psi.FileName = ExeToUse;
+
+            string CompressValue = comboBoxCompressLevel.Text;
+
+            StringBuilder ArgsString = new StringBuilder();
+
+
+            ArgsString.Append(" -" + CompressValue + " ");
+
+            if (numericUpDownLossy.Value > 0)
+            {
+                ArgsString.Append(" --lossy=" + numericUpDownLossy.Value.ToString());
+            }
+
+            if (numericUpDownColor.Value > 0)
+            {
+                ArgsString.Append(" --colors=" + numericUpDownColor.Value.ToString());
+            }
+
+            if (textBoxWidth.Text != "0" && textBoxHeight.Text != "0")
+            {
+                ArgsString.Append(" --resize-fit " + textBoxWidth.Text + "X" + textBoxHeight + " ");
+            }
+
+            ArgsString.Append("\"" + textBoxPath.Text + "\"");
+            ArgsString.Append(" -o " + "\"" + "temp.gif" + "\"");
+
+            psi.Arguments = ArgsString.ToString();
+
+            Process.Start(psi).WaitForExit();
+
+            using (var fs = new System.IO.FileStream("temp.gif", System.IO.FileMode.Open, System.IO.FileAccess.Read))
+            {
+                var ms = new System.IO.MemoryStream();
+                fs.CopyTo(ms);
+                ms.Position = 0;
+
+                if (pictureBoxTarget.Image != null)
+                    pictureBoxTarget.Image.Dispose();
+
+                pictureBoxTarget.Image = Image.FromStream(ms);
+            }
+
+        }
+
+        private void buttonOptimize_Click(object sender, EventArgs e)
+        {
+            Optimize();
+        }
     }
 }

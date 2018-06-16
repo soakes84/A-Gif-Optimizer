@@ -45,6 +45,7 @@
             this.label3 = new System.Windows.Forms.Label();
             this.buttonOptimize = new System.Windows.Forms.Button();
             this.buttonBrowse = new System.Windows.Forms.Button();
+            this.textBoxPath = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxTarget)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownLossy)).BeginInit();
@@ -59,6 +60,7 @@
             this.pictureBoxSource.Location = new System.Drawing.Point(29, 38);
             this.pictureBoxSource.Name = "pictureBoxSource";
             this.pictureBoxSource.Size = new System.Drawing.Size(304, 281);
+            this.pictureBoxSource.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBoxSource.TabIndex = 0;
             this.pictureBoxSource.TabStop = false;
             // 
@@ -69,6 +71,7 @@
             this.pictureBoxTarget.Location = new System.Drawing.Point(464, 38);
             this.pictureBoxTarget.Name = "pictureBoxTarget";
             this.pictureBoxTarget.Size = new System.Drawing.Size(306, 281);
+            this.pictureBoxTarget.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom;
             this.pictureBoxTarget.TabIndex = 1;
             this.pictureBoxTarget.TabStop = false;
             // 
@@ -138,7 +141,7 @@
             this.groupBox1.Controls.Add(this.comboBoxCompressLevel);
             this.groupBox1.Controls.Add(this.numericUpDownColor);
             this.groupBox1.Controls.Add(this.numericUpDownLossy);
-            this.groupBox1.Location = new System.Drawing.Point(29, 366);
+            this.groupBox1.Location = new System.Drawing.Point(29, 401);
             this.groupBox1.Name = "groupBox1";
             this.groupBox1.Size = new System.Drawing.Size(741, 91);
             this.groupBox1.TabIndex = 9;
@@ -193,12 +196,13 @@
             // 
             // buttonOptimize
             // 
-            this.buttonOptimize.Location = new System.Drawing.Point(127, 325);
+            this.buttonOptimize.Location = new System.Drawing.Point(127, 360);
             this.buttonOptimize.Name = "buttonOptimize";
             this.buttonOptimize.Size = new System.Drawing.Size(103, 23);
             this.buttonOptimize.TabIndex = 10;
             this.buttonOptimize.Text = "Optimize";
             this.buttonOptimize.UseVisualStyleBackColor = true;
+            this.buttonOptimize.Click += new System.EventHandler(this.buttonOptimize_Click);
             // 
             // buttonBrowse
             // 
@@ -210,11 +214,19 @@
             this.buttonBrowse.UseVisualStyleBackColor = true;
             this.buttonBrowse.Click += new System.EventHandler(this.buttonBrowse_Click);
             // 
+            // textBoxPath
+            // 
+            this.textBoxPath.Location = new System.Drawing.Point(29, 325);
+            this.textBoxPath.Name = "textBoxPath";
+            this.textBoxPath.Size = new System.Drawing.Size(304, 20);
+            this.textBoxPath.TabIndex = 12;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 504);
+            this.Controls.Add(this.textBoxPath);
             this.Controls.Add(this.buttonBrowse);
             this.Controls.Add(this.buttonOptimize);
             this.Controls.Add(this.groupBox1);
@@ -258,6 +270,7 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button buttonOptimize;
         private System.Windows.Forms.Button buttonBrowse;
+        private System.Windows.Forms.TextBox textBoxPath;
     }
 }
 
