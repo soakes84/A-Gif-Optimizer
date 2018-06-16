@@ -4,6 +4,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -137,6 +138,17 @@ namespace GifOpto
         private void buttonOptimize_Click(object sender, EventArgs e)
         {
             Optimize();
+        }
+
+        private void buttonSave_Click(object sender, EventArgs e)
+        {
+            FolderBrowserDialog folder = new FolderBrowserDialog();
+            DialogResult result = folder.ShowDialog();
+
+            if (result == DialogResult.OK)
+            {
+                File.Copy("temp.gif", folder.SelectedPath + "\\Optimized.gif");
+            }
         }
     }
 }

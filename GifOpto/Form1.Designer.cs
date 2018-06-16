@@ -46,6 +46,7 @@
             this.buttonOptimize = new System.Windows.Forms.Button();
             this.buttonBrowse = new System.Windows.Forms.Button();
             this.textBoxPath = new System.Windows.Forms.TextBox();
+            this.buttonSave = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.pictureBoxTarget)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.numericUpDownLossy)).BeginInit();
@@ -196,6 +197,7 @@
             // 
             // buttonOptimize
             // 
+            this.buttonOptimize.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.buttonOptimize.Location = new System.Drawing.Point(127, 360);
             this.buttonOptimize.Name = "buttonOptimize";
             this.buttonOptimize.Size = new System.Drawing.Size(103, 23);
@@ -221,11 +223,23 @@
             this.textBoxPath.Size = new System.Drawing.Size(304, 20);
             this.textBoxPath.TabIndex = 12;
             // 
+            // buttonSave
+            // 
+            this.buttonSave.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.buttonSave.Location = new System.Drawing.Point(654, 325);
+            this.buttonSave.Name = "buttonSave";
+            this.buttonSave.Size = new System.Drawing.Size(116, 23);
+            this.buttonSave.TabIndex = 13;
+            this.buttonSave.Text = "Save";
+            this.buttonSave.UseVisualStyleBackColor = true;
+            this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(800, 504);
+            this.Controls.Add(this.buttonSave);
             this.Controls.Add(this.textBoxPath);
             this.Controls.Add(this.buttonBrowse);
             this.Controls.Add(this.buttonOptimize);
@@ -271,6 +285,7 @@
         private System.Windows.Forms.Button buttonOptimize;
         private System.Windows.Forms.Button buttonBrowse;
         private System.Windows.Forms.TextBox textBoxPath;
+        private System.Windows.Forms.Button buttonSave;
     }
 }
 
